@@ -1,5 +1,11 @@
 # @aws-amplify/ui
 
+## 3.0.13
+
+### Patch Changes
+
+- [#1268](https://github.com/aws-amplify/amplify-ui/pull/1268) [`7c81bacdf`](https://github.com/aws-amplify/amplify-ui/commit/7c81bacdfdc71d71843b8a7285e513e09e9842cb) Thanks [@th3oxen](https://github.com/th3oxen)! - Improve IT translation accuracy
+
 ## 3.0.12
 
 ### Patch Changes

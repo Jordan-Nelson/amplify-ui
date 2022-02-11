@@ -1,5 +1,39 @@
 # @aws-amplify/ui-react
 
+## 2.4.0
+
+### Minor Changes
+
+- [#1267](https://github.com/aws-amplify/amplify-ui/pull/1267) [`3600d9b6f`](https://github.com/aws-amplify/amplify-ui/commit/3600d9b6feaaad4ba297faaa09c83c365e2a1ddc) Thanks [@dbanksdesign](https://github.com/dbanksdesign)! - Adding `paths` prop to Icon which is an array of path-like objects that will be mapped to `<path>` elements.
+
+  Example:
+
+  ```jsx
+  <Icon
+    ariaLabel="tag"
+    viewBox={{ width: 23, height: 15 }}
+    paths={[
+      {
+        d: 'M1 0.5C0.723858 0.5 0.5 0.723858 0.5 1V14C0.5 14.2761 0.723858 14.5 1 14.5H14C14.1148 14.5 14.2262 14.4605 14.3153 14.3881L22.3153 7.88806C22.4322 7.79311 22.5 7.65056 22.5 7.5C22.5 7.34944 22.4322 7.20689 22.3153 7.11194L14.3153 0.611943C14.2262 0.539529 14.1148 0.5 14 0.5H1Z',
+        strokeLinejoin: 'bevel',
+        strokeLinecap: 'round',
+        strokeDasharray: '4 4',
+        fill: 'transparent',
+        stroke: 'currentColor',
+      },
+    ]}
+  />
+  ```
+
+### Patch Changes
+
+- [#1259](https://github.com/aws-amplify/amplify-ui/pull/1259) [`a6af87143`](https://github.com/aws-amplify/amplify-ui/commit/a6af87143d2a232b95ba3a1e0b63a1b3566e5aab) Thanks [@jacoblogan](https://github.com/jacoblogan)! - move data-theme attributes to document root to capture elements that fall outside of the amplify provider component
+
+* [#1285](https://github.com/aws-amplify/amplify-ui/pull/1285) [`bbd182130`](https://github.com/aws-amplify/amplify-ui/commit/bbd182130137403c4fde5d1ac9217f8d33c05b48) Thanks [@joebuono](https://github.com/joebuono)! - Add 'to' prop to Link primitive
+
+* Updated dependencies [[`7c81bacdf`](https://github.com/aws-amplify/amplify-ui/commit/7c81bacdfdc71d71843b8a7285e513e09e9842cb)]:
+  - @aws-amplify/ui@3.0.13
+
 ## 2.3.0
 
 ### Minor Changes
