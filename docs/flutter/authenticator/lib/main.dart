@@ -24,6 +24,11 @@ import 'package:flutter_authenticator_example/authenticator_config.dart';
 import 'package:flutter_authenticator_example/stubs/amplify_auth_cognito_stub.dart';
 import 'package:flutter_authenticator_example/stubs/amplify_stub.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_authenticator_example/work_flow/confirm_sign_up_widget.dart';
+import 'package:flutter_authenticator_example/work_flow/forgot_password_widget.dart';
+import 'package:flutter_authenticator_example/work_flow/sign_in_widget.dart';
+import 'package:flutter_authenticator_example/work_flow/sign_up_widet.dart';
+import 'package:flutter_authenticator_example/work_flow/work_flow_theme.dart';
 
 void main() {
   runApp(const FlutterAuthenticatorPreview());
@@ -115,8 +120,11 @@ class _MyAppState extends State<MyApp> {
   }
 
   ThemeData get theme {
-    final theme =
-        widget.config.useCustomTheme ? customLightTheme : ThemeData.light();
+    final theme = widget.config.useCustomTheme
+        ? customLightTheme
+        : _authenticatorConfig.useCustomUI
+            ? workFlowTheme
+            : ThemeData.light();
     return widget.config.device == Device.web
         ? theme
         : theme.copyWith(
@@ -126,8 +134,11 @@ class _MyAppState extends State<MyApp> {
   }
 
   ThemeData get darkTheme {
-    final theme =
-        widget.config.useCustomTheme ? customDarkTheme : ThemeData.dark();
+    final theme = widget.config.useCustomTheme
+        ? customDarkTheme
+        : _authenticatorConfig.useCustomUI
+            ? workFlowThemeDark
+            : ThemeData.dark();
     return widget.config.device == Device.web
         ? theme
         : theme.copyWith(
@@ -216,72 +227,16 @@ class _HomeWidgetState extends State<HomeWidget> {
 }
 
 Widget? customBuilder(BuildContext context, AuthenticatorState state) {
-  const padding = EdgeInsets.only(left: 16, right: 16, top: 48, bottom: 16);
   switch (state.currentStep) {
     case AuthenticatorStep.signIn:
-      return Scaffold(
-        body: Padding(
-          padding: padding,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                // app logo
-                const Center(child: FlutterLogo(size: 100)),
-                // prebuilt sign in form from amplify_authenticator package
-                SignInForm(),
-              ],
-            ),
-          ),
-        ),
-        // custom button to take the user to sign up
-        persistentFooterButtons: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('Don\'t have an account?'),
-              TextButton(
-                onPressed: () => state.changeStep(
-                  AuthenticatorStep.signUp,
-                ),
-                child: const Text('Sign Up'),
-              ),
-            ],
-          ),
-        ],
-      );
+      return SignInWidget(state: state);
     case AuthenticatorStep.signUp:
-      return Scaffold(
-        body: Padding(
-          padding: padding,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                // app logo
-                const Center(child: FlutterLogo(size: 100)),
-                // prebuilt sign up form from amplify_authenticator package
-                SignUpForm(),
-              ],
-            ),
-          ),
-        ),
-        // custom button to take the user to sign in
-        persistentFooterButtons: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('Already have an account?'),
-              TextButton(
-                onPressed: () => state.changeStep(
-                  AuthenticatorStep.signIn,
-                ),
-                child: const Text('Sign In'),
-              ),
-            ],
-          ),
-        ],
-      );
+      return SignUpWidget(state: state);
+    case AuthenticatorStep.confirmSignUp:
+      return ConfirmSignUpWidget(state: state);
+    case AuthenticatorStep.resetPassword:
+      return ForgotPasswordWidget(state: state);
     default:
-      // returning null defaults to the prebuilt authenticator for all other steps
       return null;
   }
 }
