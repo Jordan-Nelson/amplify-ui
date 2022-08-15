@@ -54,7 +54,7 @@ export function FlutterAuthenticatorExample({
         paddingTop: '12px',
       },
       web: {
-        height: { base: '600px' },
+        height: { base: '700px' },
         width: { base: '100%' },
       },
     };
