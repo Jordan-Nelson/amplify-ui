@@ -16,66 +16,41 @@ const workFlowColor = MaterialColor(
   },
 );
 
-final elevatedButtonTheme = ElevatedButtonThemeData(
-  style: ButtonStyle(
-    padding: MaterialStateProperty.all<EdgeInsets>(
-      const EdgeInsets.symmetric(
-        horizontal: 40,
-        vertical: 16,
+ThemeData generateTheme(Brightness brightness) {
+  final isDark = brightness == Brightness.dark;
+  return ThemeData(
+    visualDensity: VisualDensity.standard,
+    colorScheme: ColorScheme.fromSwatch(
+      brightness: brightness,
+      primarySwatch: workFlowColor,
+      backgroundColor: isDark ? Colors.grey[850] : Colors.white,
+    ),
+    textTheme: TextTheme(
+      headline1: TextStyle(
+        fontSize: 48,
+        fontWeight: FontWeight.w900,
+        color: isDark ? Colors.white : Colors.black87,
+      ),
+      headline2: const TextStyle(
+        fontSize: 40,
+        fontWeight: FontWeight.w900,
+        color: Colors.white,
       ),
     ),
-    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-      RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all<EdgeInsets>(
+          const EdgeInsets.symmetric(
+            horizontal: 40,
+            vertical: 16,
+          ),
+        ),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
       ),
     ),
-  ),
-);
-
-final workFlowTheme = ThemeData(
-  visualDensity: VisualDensity.standard,
-  colorScheme: ColorScheme.fromSwatch(
-    brightness: Brightness.light,
-    primarySwatch: workFlowColor,
-    backgroundColor: Colors.white,
-  ),
-  textTheme: const TextTheme(
-    headline1: TextStyle(
-      fontSize: 48,
-      fontWeight: FontWeight.bold,
-      color: Colors.black87,
-      letterSpacing: -2.5,
-    ),
-    headline2: TextStyle(
-      fontSize: 40,
-      fontWeight: FontWeight.bold,
-      color: Colors.white,
-      letterSpacing: -1,
-    ),
-  ),
-  elevatedButtonTheme: elevatedButtonTheme,
-);
-
-final workFlowThemeDark = ThemeData(
-  visualDensity: VisualDensity.standard,
-  colorScheme: ColorScheme.fromSwatch(
-    brightness: Brightness.dark,
-    primarySwatch: workFlowColor,
-    backgroundColor: Colors.black45,
-  ),
-  textTheme: const TextTheme(
-    headline1: TextStyle(
-      fontSize: 48,
-      fontWeight: FontWeight.bold,
-      color: Colors.white,
-      letterSpacing: -2.5,
-    ),
-    headline2: TextStyle(
-      fontSize: 40,
-      fontWeight: FontWeight.bold,
-      color: Colors.white,
-      letterSpacing: -1,
-    ),
-  ),
-  elevatedButtonTheme: elevatedButtonTheme,
-);
+  );
+}

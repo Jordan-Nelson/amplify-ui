@@ -123,7 +123,7 @@ class _MyAppState extends State<MyApp> {
     final theme = widget.config.useCustomTheme
         ? customLightTheme
         : widget.config.useCustomUI
-            ? workFlowTheme
+            ? generateTheme(Brightness.light)
             : ThemeData.light();
     return widget.config.device == Device.web
         ? theme
@@ -137,7 +137,7 @@ class _MyAppState extends State<MyApp> {
     final theme = widget.config.useCustomTheme
         ? customDarkTheme
         : widget.config.useCustomUI
-            ? workFlowThemeDark
+            ? generateTheme(Brightness.dark)
             : ThemeData.dark();
     return widget.config.device == Device.web
         ? theme
