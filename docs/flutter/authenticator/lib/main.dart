@@ -122,7 +122,7 @@ class _MyAppState extends State<MyApp> {
   ThemeData get theme {
     final theme = widget.config.useCustomTheme
         ? customLightTheme
-        : _authenticatorConfig.useCustomUI
+        : widget.config.useCustomUI
             ? workFlowTheme
             : ThemeData.light();
     return widget.config.device == Device.web
@@ -136,7 +136,7 @@ class _MyAppState extends State<MyApp> {
   ThemeData get darkTheme {
     final theme = widget.config.useCustomTheme
         ? customDarkTheme
-        : _authenticatorConfig.useCustomUI
+        : widget.config.useCustomUI
             ? workFlowThemeDark
             : ThemeData.dark();
     return widget.config.device == Device.web
